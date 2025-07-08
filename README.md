@@ -1,11 +1,27 @@
-# witness
-# open-position
+# Open Position Scraper
 
-## スクリプトの実行方法
+このスクリプトは、OANDAのオープンポジションデータを取得し、指定した条件（ロングまたはショートの比率が70%以上）に合致する通貨ペアをリストアップします。
 
-1.  **仮想環境のアクティベートとスクリプトの実行:**
-    以下のコマンドを実行して、仮想環境をアクティベートし、スクリプトを実行します。
+## 実行方法
 
+### 初回セットアップ
+
+このスクリプトを初めて実行する際は、以下の手順で環境をセットアップしてください。
+
+1.  **仮想環境の作成:**
     ```bash
-    source venv/bin/activate && python open_position_scraper.py
+    python3 -m venv venv
     ```
+
+2.  **必要なライブラリのインストール:**
+    ```bash
+    venv/bin/pip install -r requirements.txt
+    ```
+
+### スクリプトの実行
+
+セットアップ完了後、以下のコマンドでスクリプトを実行できます。
+
+```bash
+sh run.sh
+```
