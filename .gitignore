@@ -3,3 +3,4 @@ venv/
 
 # Webdriver Manager cache
 webdriver_cache/
+venv/
