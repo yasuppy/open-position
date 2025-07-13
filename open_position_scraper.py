@@ -3,13 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.driver_cache import DriverCacheManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-# キャッシュディレクトリのパスを設定
-cache_dir = os.path.join(os.getcwd(), "webdriver_cache")
 
 # ヘッドレスオプション設定（CodexなどGUIがない環境向け）
 options = Options()
@@ -17,8 +12,8 @@ options.add_argument('--headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 
-# ChromeDriver サービス開始（webdriver_managerを使用）
-service = Service(ChromeDriverManager(cache_manager=DriverCacheManager(root_dir=cache_dir)).install())
+# ChromeDriver サービス開始
+service = Service(executable_path='/usr/local/bin/chromedriver')
 
 # ドライバ起動
 driver = webdriver.Chrome(service=service, options=options)
