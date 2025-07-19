@@ -33,7 +33,14 @@ def create_driver() -> webdriver.Chrome:
     if driver_path:
         service = Service(driver_path)
     else:
-        service = Service(ChromeDriverManager().install())
+        # Use a directory within the project for webdriver-manager to store the driver
+        # This is necessary due to macOS Seatbelt restrictions.
+        project_root = os.path.dirname(os.path.abspath(__file__))
+        driver_dir = os.path.join(project_root, "drivers")
+        os.makedirs(driver_dir, exist_ok=True)
+        from webdriver_manager.core.driver_cache import DriverCacheManager
+        cache_manager = DriverCacheManager(root_dir=driver_dir)
+        service = Service(ChromeDriverManager(cache_manager=cache_manager).install())
 
     return webdriver.Chrome(service=service, options=options)
 
